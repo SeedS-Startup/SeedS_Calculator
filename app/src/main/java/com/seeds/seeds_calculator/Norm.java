@@ -1,4 +1,4 @@
 package com.seeds.seeds_calculator;
 
-public class Alpha extends InputType {
+public class Norm extends OutputType {
 }
