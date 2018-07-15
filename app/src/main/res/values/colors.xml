@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">#504772</color>
+    <color name="colorPrimaryDark">#504772</color>
+    <color name="colorAccent">#504772</color>
+    <color name="navigationBarColor">#FF504772</color>
+    <color name="yellow_but">#a19359</color>
+    <color name="orange_but">#d46446</color>
+    <color name="blue_but">#3a8572</color>
+    <color name="black_but">#444448</color>
+    <color name="purple_but">#9b5584</color>
 </resources>
