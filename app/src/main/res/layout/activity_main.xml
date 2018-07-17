@@ -191,7 +191,7 @@
                     android:orientation="vertical"
                     android:weightSum="5">
 
-                    <TextView
+                    <io.github.kexanie.library.MathView
                         android:id="@+id/f_line"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
@@ -257,9 +257,8 @@
 
                             <Space
                                 android:layout_width="match_parent"
-                                android:layout_height="0dp"
-                                android:layout_weight="3">
-                            </Space>
+                                android:layout_height="10dp"
+                                android:layout_weight="3"></Space>
 
                             <TextView
                                     android:layout_weight="10"
@@ -283,7 +282,7 @@
                                 android:layout_height="0dp"
                                 android:layout_weight="30"
                                 android:background="@mipmap/left"
-                                android:clickable="true"/>
+                                />
 
                             <Space
                                 android:layout_width="match_parent"
@@ -1485,12 +1484,12 @@
                                     android:layout_width="0dp"
                                     android:layout_height="match_parent"
                                     android:layout_weight="6"
+                                    android:gravity="center"
                                     android:text="tan-1"
                                     android:textAllCaps="false"
-                                    android:textSize="8sp"
                                     android:textColor="@color/yellow_but"
-                                    android:textStyle="bold"
-                                    android:gravity="center"/>
+                                    android:textSize="8sp"
+                                    android:textStyle="bold" />
                                 <TextView
                                     android:layout_width="0dp"
                                     android:layout_height="match_parent"
