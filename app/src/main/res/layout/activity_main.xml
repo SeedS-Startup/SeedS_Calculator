@@ -191,7 +191,7 @@
                     android:orientation="vertical"
                     android:weightSum="5">
 
-                    <io.github.kexanie.library.MathView
+                    <TextView
                         android:id="@+id/f_line"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
