@@ -46,6 +46,8 @@ public class Start extends AppCompatActivity implements View.OnClickListener {
         else
             inputType=new Pure();
         MathView mathView=(MathView)findViewById(R.id.f_line);
+        mathView.setHorizontalScrollBarEnabled(true);
+        mathView.setVerticalScrollBarEnabled(true);
         String mathString=inputType.getOutput(v,previousButton,this);
         mathView.setText(mathString);
         previousButton=v.getId();
