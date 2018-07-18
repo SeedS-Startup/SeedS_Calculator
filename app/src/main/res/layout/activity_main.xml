@@ -197,11 +197,10 @@
                       <io.github.kexanie.library.MathView
                         android:id="@+id/f_line"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="0dp"
+                          android:layout_weight="2.35"
                         android:gravity="left"
-                        android:scrollbars="vertical|horizontal"
                         android:maxLines="1"
-                        android:text="First Line"
                         android:textAllCaps="true"
                         android:textColor="#FF2D3591"
                         android:textSize="25sp"
