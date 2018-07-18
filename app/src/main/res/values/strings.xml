@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">SeedS_Calculator</string>
+    <string name="start_text">Trust in SeedS :) "\n"some text will be added "\n"
+</string>
 </resources>
