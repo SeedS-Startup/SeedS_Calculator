@@ -11,6 +11,8 @@ import java.util.Set;
 public abstract class InputType {
     public static String input="$$|$$";
     public static Set<String> leftRightKey= new HashSet<>();
+    public static Set<String> deletekey= new HashSet<>();
+    public static Set<String> deleteSkipKey= new HashSet<>();
 
     public String getInput(){
         return input;
