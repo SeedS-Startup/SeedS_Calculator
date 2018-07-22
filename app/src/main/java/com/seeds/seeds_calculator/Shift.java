@@ -8,7 +8,7 @@ public class Shift extends InputType {
     String getOutput(View v, int previousButton, Context context) {
         switch(v.getId()){
             case R.id.but46:
-                String drg="1.digree\t2.radian\n3.gradian";
+                String drg="1.degree\t2.radian\n3.gradian";
                 showAlertDialog(context,drg);
             default:
                 String output="";

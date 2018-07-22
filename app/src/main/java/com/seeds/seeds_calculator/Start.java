@@ -36,6 +36,13 @@ public class Start extends AppCompatActivity implements View.OnClickListener {
             ImageButton imageButton=(ImageButton)findViewById(imageButtonId[i]);
             imageButton.setOnClickListener(this);
         }
+        Button btn=(Button)findViewById(R.id.but47);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MathOperations mo=new MathOperations(inputType.getInput());
+            }
+        });
     }
 
     @Override
