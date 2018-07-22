@@ -93,7 +93,17 @@ public class MathOperations {
                 } else {
                     while (!operators.empty()) {
                         String previousOperation = operators.pop();
-                        if (greaterOrder(previousOperation, inputItems[i])) {
+                        int rate=0;
+                        for(OperatorInfos op:operatorInfos) {
+                            if (op.getName().equals(inputItems[i]))
+                                rate = Integer.parseInt(op.getRate());
+                        }
+                        if (operators.empty() && rate == 0) {
+                            operators.add(previousOperation);
+                            break;
+                        }
+
+                        else if (greaterOrder(previousOperation, inputItems[i])) {
                             output=output+previousOperation+" ";
                         } else {
                             operators.add(previousOperation);
