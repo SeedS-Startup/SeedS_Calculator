@@ -161,7 +161,7 @@ public class Pure extends InputType {
                 deletekey.add("\\sqrt{()}");
                 leftRightKey.add(")}");
                 leftRightKey.add("\\sqrt{(");
-                return "\\sqrt{()}";
+                return "\\sqrt[(2)]{()}";
             case R.id.but12:
                 deletekey.add("{()}^2");
                 leftRightKey.add("{(");

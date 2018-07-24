@@ -32,6 +32,15 @@ public class MathOperations {
         operatorInfos.add(new OperatorInfos("tan","0","1"));
         operatorInfos.add(new OperatorInfos("log","0","1"));
         operatorInfos.add(new OperatorInfos("ln","0","1"));
+        operatorInfos.add(new OperatorInfos("sinh","0","1"));
+        operatorInfos.add(new OperatorInfos("cosh","0","1"));
+        operatorInfos.add(new OperatorInfos("tanh","0","1"));
+        operatorInfos.add(new OperatorInfos("arcsinh","0","1"));
+        operatorInfos.add(new OperatorInfos("arccosh","0","1"));
+        operatorInfos.add(new OperatorInfos("arctanh","0","1"));
+        operatorInfos.add(new OperatorInfos("arcsin","0","1"));
+        operatorInfos.add(new OperatorInfos("arccos","0","1"));
+        operatorInfos.add(new OperatorInfos("arctan","0","1"));
         operatorInfos.add(new OperatorInfos("!","0","1"));
         return operatorInfos;
     }
@@ -43,7 +52,11 @@ public class MathOperations {
                     ||input.toCharArray()[i]=='$'||input.toCharArray()[i]=='|'){
                 input=input.substring(0,i)+" "+input.substring(i+1);
             }
-            if((input.toCharArray()[i]=='s'&& input.toCharArray()[i+1]!='i')||input.toCharArray()[i]=='^'||input.toCharArray()[i]=='v')
+            if(input.toCharArray()[i]=='s'&& input.toCharArray()[i+1]!='i')
+                input=input.substring(0,i+1)+" "+input.substring(i+1);
+            if(input.toCharArray()[i]=='s'&& input.toCharArray()[i+1]!='q')
+                input=input.substring(0,i+1)+" "+input.substring(i+1);
+            if(input.toCharArray()[i]=='^'&& input.toCharArray()[i]=='v')
                 input=input.substring(0,i+1)+" "+input.substring(i+1);
         }
         for(int i=0;i<input.length();i++){

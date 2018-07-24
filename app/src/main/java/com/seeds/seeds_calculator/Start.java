@@ -17,7 +17,6 @@ public class Start extends AppCompatActivity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Log.d("close","yes");
         Toast.makeText(this, "shift", Toast.LENGTH_SHORT).show();
         MathView mathView=(MathView)findViewById(R.id.f_line);
         mathView.setText("$$|$$");
@@ -40,7 +39,9 @@ public class Start extends AppCompatActivity implements View.OnClickListener {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MathOperations mo=new MathOperations(inputType.getInput());
+                Print print=new LineIO(inputType.getInput());
+                String output=print.output();
+                System.out.println(output);
             }
         });
     }
@@ -59,7 +60,9 @@ public class Start extends AppCompatActivity implements View.OnClickListener {
         mathView.setHorizontalScrollBarEnabled(true);
         mathView.setVerticalScrollBarEnabled(true);
         String mathString=inputType.getOutput(v,previousButton,this);
-        mathView.setText(mathString);
+        Print print=new LineIO(inputType.getInput());
+        String output=print.output();
+        mathView.setText(output);
         previousButton=v.getId();
     }
 }

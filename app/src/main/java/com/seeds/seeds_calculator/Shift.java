@@ -84,13 +84,13 @@ public class Shift extends InputType {
                 deletekey.add("{()}\\frac{()}{()}");
                 leftRightKey.add(")}");
                 leftRightKey.add(")}{(");
-                leftRightKey.add("{()}\\frac{(");
+                leftRightKey.add(")}\\frac{(");
                 return "{()}\\frac{()}{()}";
             case R.id.but11:
                 deletekey.add("\\sqrt[3]{()}");
                 leftRightKey.add(")}");
                 leftRightKey.add("\\sqrt[3]{(");
-                return "\\sqrt[3]{()}";
+                return "\\sqrt[(3)]{()}";
             case R.id.but12:
                 deletekey.add("{()}^3");
                 leftRightKey.add(")}^3");
@@ -112,6 +112,8 @@ public class Shift extends InputType {
                 leftRightKey.add(")}");
                 leftRightKey.add("{e}^{(");
                 return "{e}^{()}";
+            case R.id.but7:
+                return "\\frac{d}{dx}{()}\\mid _{x=()}";
             case R.id.but8:
                 deletekey.add("{()}!");
                 leftRightKey.add("{(");
