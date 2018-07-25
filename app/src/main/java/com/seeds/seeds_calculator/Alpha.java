@@ -14,7 +14,6 @@ public class Alpha extends InputType {
                 input=input.substring(0,cursorPosition-1)+output+input.substring(cursorPosition-1);
         }
         return input;
-
     }
 
     private String findString(View v, int previousButton) {
