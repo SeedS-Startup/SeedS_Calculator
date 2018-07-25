@@ -257,8 +257,8 @@
 
                             <Space
                                 android:layout_width="match_parent"
-                                android:layout_height="10dp"
-                                android:layout_weight="3"></Space>
+                                android:layout_height="0dp"
+                                android:layout_weight="3"/>
 
                             <TextView
                                     android:layout_weight="10"
@@ -439,7 +439,6 @@
                                 android:layout_weight="18"/>
 
                             <LinearLayout
-                                android:id="@+id/replay"
                                 android:layout_width="match_parent"
                                 android:layout_height="0dp"
                                 android:layout_weight="70"
