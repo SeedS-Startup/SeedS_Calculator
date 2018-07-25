@@ -10,171 +10,236 @@ import java.util.Queue;
 import java.util.Stack;
 
 public class MathOperations {
-    String input;
-    ArrayList<OperatorInfos> operatorInfos=new ArrayList<>();
-    public MathOperations(String input) {
-        operatorInfos=writeInfos();
-        this.input = input;
-        this.input=correctingInputString(this.input);
-        this.input=findPostfix(this.input);
-        System.out.println(this.input);
-    }
-
-    private ArrayList<OperatorInfos> writeInfos() {
-        ArrayList<OperatorInfos> operatorInfos=new ArrayList<>();
-        operatorInfos.add(new OperatorInfos("-","1","2"));
-        operatorInfos.add(new OperatorInfos("+","1","2"));
-        operatorInfos.add(new OperatorInfos("times","2","2"));
-        operatorInfos.add(new OperatorInfos("div","2","2"));
-        operatorInfos.add(new OperatorInfos("^","3","2"));
-        operatorInfos.add(new OperatorInfos("sin","0","1"));
-        operatorInfos.add(new OperatorInfos("cos","0","1"));
-        operatorInfos.add(new OperatorInfos("tan","0","1"));
-        operatorInfos.add(new OperatorInfos("log","0","1"));
-        operatorInfos.add(new OperatorInfos("ln","0","1"));
-        operatorInfos.add(new OperatorInfos("sinh","0","1"));
-        operatorInfos.add(new OperatorInfos("cosh","0","1"));
-        operatorInfos.add(new OperatorInfos("tanh","0","1"));
-        operatorInfos.add(new OperatorInfos("arcsinh","0","1"));
-        operatorInfos.add(new OperatorInfos("arccosh","0","1"));
-        operatorInfos.add(new OperatorInfos("arctanh","0","1"));
-        operatorInfos.add(new OperatorInfos("arcsin","0","1"));
-        operatorInfos.add(new OperatorInfos("arccos","0","1"));
-        operatorInfos.add(new OperatorInfos("arctan","0","1"));
-        operatorInfos.add(new OperatorInfos("!","0","1"));
-        return operatorInfos;
-    }
-
-
-    public String correctingInputString(String input){
+    public String handleInputString(String input) {
+        ArrayList<Integer> indexes = new ArrayList<>();
         for(int i=0;i<input.length();i++){
-            if(input.toCharArray()[i]=='\\'||input.toCharArray()[i]=='{' ||input.toCharArray()[i]=='}'
-                    ||input.toCharArray()[i]=='$'||input.toCharArray()[i]=='|'){
-                input=input.substring(0,i)+" "+input.substring(i+1);
+            if(i==input.length()-1){
+                input=input.substring(0,i);
             }
-            if(input.toCharArray()[i]=='s'&& input.toCharArray()[i+1]!='i')
-                input=input.substring(0,i+1)+" "+input.substring(i+1);
-            if(input.toCharArray()[i]=='s'&& input.toCharArray()[i+1]!='q')
-                input=input.substring(0,i+1)+" "+input.substring(i+1);
-            if(input.toCharArray()[i]=='^'&& input.toCharArray()[i]=='v')
-                input=input.substring(0,i+1)+" "+input.substring(i+1);
-        }
-        for(int i=0;i<input.length();i++){
-            if(input.toCharArray()[i]=='('||input.toCharArray()[i]==')' ||input.toCharArray()[i]=='-'
-                    ||input.toCharArray()[i]=='+'||input.toCharArray()[i]=='%'||input.toCharArray()[i]==','
-                    ||input.toCharArray()[i]=='['||input.toCharArray()[i]==']'){
-                input=input.substring(0,i+1)+" "+input.substring(i+1);
-                input=input.substring(0,i)+" "+input.substring(i);
-                i++;
+            else if(input.toCharArray()[i]=='$'||input.toCharArray()[i]=='\\'||input.toCharArray()[i]=='{'||
+                    input.toCharArray()[i]=='}'||input.toCharArray()[i]=='|'){
+                input = input.substring(0, i) + input.substring(i + 1);
+                i--;
             }
         }
-        char previousChar=input.toCharArray()[0];
-        for(int i=1;i<input.length()-1;i++){
-            if(previousChar==' ' && input.toCharArray()[i]==' '){
-                input=input.substring(0,i)+input.substring(i+1);
+        for (int i = 0; i < input.length(); i++) {
+
+             if ((indexes = exist("times", input, i)) != null) {
+                int deleteNumber = 0;
+                for (Integer index : indexes) {
+                    input = input.substring(0, index - deleteNumber) + input.substring(index + 1 - deleteNumber);
+                    deleteNumber++;
+                }
+                input = input.substring(0, indexes.get(0)) + "*" + input.substring(indexes.get(0));
             }
-            previousChar=input.toCharArray()[i];
+             else if ((indexes = exist("fracddx()mid _x=()", input, i)) != null) {
+                 String lim="";
+                 String function="";
+                 int check=0;
+                 for(int j=0;j<indexes.size();j++){
+                     int k=0;
+                     if(input.toCharArray()[indexes.get(j)]=='('){
+                         for( k=j;k<indexes.size();k++){
+                             if(input.toCharArray()[indexes.get(k)]==')'){
+                                 break;
+                             }
+                         }
+                         if(check==0){
+                             function=input.substring(indexes.get(j)+1,indexes.get(k));
+                             check++;
+                         }
+                         else if(check==1){
+                             lim=input.substring(indexes.get(j)+1,indexes.get(k));
+                             check++;
+                         }
+                         j=k;
+                     }
+                 }
+                 input=input.substring(0,indexes.get(0))+"der("+function+",x,"+lim+")"+
+                         input.substring(indexes.get(indexes.size()-1)+1);
+
+             }
+            else if ((indexes = exist("div", input, i)) != null) {
+                int deleteNumber = 0;
+                for (Integer index : indexes) {
+                    input = input.substring(0, index - deleteNumber) + input.substring(index + 1 - deleteNumber);
+                    deleteNumber++;
+                }
+                input = input.substring(0, indexes.get(0)) + "/" + input.substring(indexes.get(0));
+            }
+             else if ((indexes = exist("()frac()()", input, i)) != null) {
+                 int deleteNumber = 0;
+                 for (Integer index : indexes) {
+                     if(input.toCharArray()[index-deleteNumber]=='f'||input.toCharArray()[index-deleteNumber]=='a'||
+                             input.toCharArray()[index-deleteNumber]=='r'||input.toCharArray()[index-deleteNumber]=='c') {
+                         input = input.substring(0, index - deleteNumber) + input.substring(index + 1 - deleteNumber);
+                         deleteNumber++;
+                     }
+
+                 }
+                 input = input.substring(0, indexes.get(2)) + "+" + input.substring(indexes.get(2));
+                 input = input.substring(0, indexes.get(8)-4) + "/" + input.substring(indexes.get(8)-2);
+             }
+             else if ((indexes = exist("frac()()", input, i)) != null) {
+                 int deleteNumber = 0;
+                 for (Integer index : indexes) {
+                     if(input.toCharArray()[index-deleteNumber]=='f'||input.toCharArray()[index-deleteNumber]=='a'||
+                             input.toCharArray()[index-deleteNumber]=='r'||input.toCharArray()[index-deleteNumber]=='c') {
+                         input = input.substring(0, index - deleteNumber) + input.substring(index + 1 - deleteNumber);
+                         deleteNumber++;
+                     }
+
+                 }
+                 input = input.substring(0, indexes.get(6)-5) + "/" + input.substring(indexes.get(6)-3);
+             }
+             else if ((indexes = exist("sqrt[(2)]()", input, i)) != null) {
+                 for (Integer index : indexes) {
+                     if(input.toCharArray()[index]=='[') {
+                         input = input.substring(0, index ) + input.substring(index + 5);
+                         break;
+
+                     }
+
+                 }
+             }
+             else if ((indexes = exist("int_()^()()", input, i)) != null) {
+                 String begin="";
+                 String end="";
+                 String function="";
+                 int check=0;
+                 for(int j=0;j<indexes.size();j++){
+                     int k=0;
+                     if(input.toCharArray()[indexes.get(j)]=='('){
+                         for( k=j;k<indexes.size();k++){
+                             if(input.toCharArray()[indexes.get(k)]==')'){
+                                 break;
+                             }
+                         }
+                         if(check==0){
+                             begin=input.substring(indexes.get(j)+1,indexes.get(k));
+                             check++;
+                         }
+                         else if(check==1){
+                             end=input.substring(indexes.get(j)+1,indexes.get(k));
+                             check++;
+                         }
+                         else if(check==2){
+                             function=input.substring(indexes.get(j)+1,indexes.get(k));
+                             check++;
+                         }
+                         j=k;
+                     }
+                 }
+                 input=input.substring(0,indexes.get(0))+input.substring(indexes.get(indexes.size()-1)+1);
+                 input=input.substring(0,indexes.get(0))+"int("+function+",x,"+begin+","+end+")"+input.substring(indexes.get(0));
+             }
+             else if ((indexes = exist("log_()()", input, i)) != null) {
+                 int deleteNumber=0;
+                 for (Integer index : indexes) {
+                     if(input.toCharArray()[index-deleteNumber]=='_') {
+                         input = input.substring(0, index-deleteNumber ) + input.substring(index + 1-deleteNumber);
+                         deleteNumber++;
+                     }
+                     if(input.toCharArray()[index-deleteNumber]==')'&&input.toCharArray()[index+1-deleteNumber]=='('){
+                         input=input.substring(0,index-deleteNumber)+","+input.substring(index+2-deleteNumber);
+                         break;
+                     }
+                 }
+             }
+             else if ((indexes = exist("log()", input, i)) != null) {
+                 for (Integer index : indexes) {
+
+                     if(input.toCharArray()[index]=='('){
+                         input=input.substring(0,index+1)+"10,"+input.substring(index+1);
+                         break;
+                     }
+                 }
+             }
+             else if ((indexes = exist("sqrt[()]()", input, i)) != null) {
+                 String n="";
+                 String x="";
+                 int check=0;
+                 for(int j=0;j<indexes.size();j++){
+                     int k=0;
+                     if(input.toCharArray()[indexes.get(j)]=='('){
+                         for( k=j;k<indexes.size();k++){
+                             if(input.toCharArray()[indexes.get(k)]==')'){
+                                 break;
+                             }
+                         }
+                         if(check==0){
+                             n=input.substring(indexes.get(j)+1,indexes.get(k));
+                             check++;
+                         }
+                         else if(check==1){
+                             x=input.substring(indexes.get(j)+1,indexes.get(k));
+                             check++;
+                         }
+                         j=k;
+                     }
+                 }
+                 input=input.substring(0,indexes.get(0))+"root("+n+","+x+")"+input.substring(indexes.get(indexes.size()-1)+1);
+
+             }
+             else if ((indexes = exist("sum_()^()()", input, i)) != null) {
+                 String begin="";
+                 String end="";
+                 String function="";
+                 int check=0;
+                 for(int j=0;j<indexes.size();j++){
+                     int k=0;
+                     if(input.toCharArray()[indexes.get(j)]=='('){
+                         for( k=j;k<indexes.size();k++){
+                             if(input.toCharArray()[indexes.get(k)]==')'){
+                                 break;
+                             }
+                         }
+                         if(check==0){
+                             begin=input.substring(indexes.get(j)+1,indexes.get(k));
+                             check++;
+                         }
+                         else if(check==1){
+                             end=input.substring(indexes.get(j)+1,indexes.get(k));
+                             check++;
+                         }
+                         else if(check==2){
+                             function=input.substring(indexes.get(j)+1,indexes.get(k));
+                             check++;
+                         }
+                         j=k;
+                     }
+                 }
+                 input=input.substring(0,indexes.get(0))+"sum(x,"+begin+","+end+","+function+")"+
+                         input.substring(indexes.get(indexes.size()-1)+1);
+
+             }
+
+
         }
         return input;
     }
-    private String findPostfix(String input) {
-        String output="";
-        Stack<String> operators=new Stack<>();
-        String[] inputItems=input.split(" ");
-        for(int i=0;i<inputItems.length;i++){
-            if(!inputItems[i].equals("")) {
-                if (isNumeric(inputItems[i])) {
-                    output=output+inputItems[i]+" ";
-                } else if (inputItems[i].equals("(")) {
-                    operators.add(inputItems[i]);
-                } else if (inputItems[i].equals(")")) {
-                    String operator = operators.pop();
-                    while(!operator.equals("(")){
-                        output=output+operator+" ";
-                        operator=operators.pop();
-                    }
-                    operator=operators.pop();
-                    for(OperatorInfos op:operatorInfos){
-                        if(op.getName().equals(operator)){
-                            if(Integer.parseInt(op.getRate())==0)
-                                output=output+operator+" ";
-                            else
-                                operators.add(operator);
-                            break;
-                        }
-                    }
-                } else {
-                    while (!operators.empty()) {
-                        String previousOperation = operators.pop();
-                        int rate=0;
-                        for(OperatorInfos op:operatorInfos) {
-                            if (op.getName().equals(inputItems[i]))
-                                rate = Integer.parseInt(op.getRate());
-                        }
-                        if (operators.empty() && rate == 0) {
-                            operators.add(previousOperation);
-                            break;
-                        }
 
-                        else if (greaterOrder(previousOperation, inputItems[i])) {
-                            output=output+previousOperation+" ";
-                        } else {
-                            operators.add(previousOperation);
-                            break;
-                        }
-
-                    }
-                        operators.add(inputItems[i]);
-
+    private ArrayList<Integer> exist(String s, String input, int i) {
+        ArrayList<Integer> indexes = new ArrayList<>();
+        if (input.toCharArray()[i] != s.toCharArray()[0])
+            return null;
+        indexes.add(i);
+        i++;
+        int pCheck = 0;
+        for (int count = 1; count < s.length() && i < input.length(); i++) {
+            if (input.toCharArray()[i] == s.toCharArray()[count] && pCheck == 0) {
+                count++;
+                indexes.add(i);
+            } else if (input.toCharArray()[i] == '{' || input.toCharArray()[i] == '(') {
+                pCheck++;
+            } else if (input.toCharArray()[i] == '}' || input.toCharArray()[i] == ')') {
+                if (pCheck > 0) {
+                    pCheck--;
                 }
             }
-
         }
-        while(!operators.empty()){
-            output=output+operators.pop()+"";
-        }
-
-        return output;
+        if(indexes.size()==s.length())
+            return indexes;
+        return null;
     }
-
-
-    private boolean isNumeric(String inputItem) {
-
-        for(int i=0;i<inputItem.length();i++){
-            int check=0;
-            if((inputItem.toCharArray()[i]<='9' && inputItem.toCharArray()[i]>='0'))
-                check=1;
-            else if(inputItem.toCharArray()[i]=='.')
-                check=1;
-            else if(inputItem.toCharArray()[i]<='D' && inputItem.toCharArray()[i]>='A')
-                check=1;
-            else if(inputItem.toCharArray()[i]=='M')
-                check=1;
-            else if(inputItem.toCharArray()[i]=='X')
-                check=1;
-            else if(inputItem.toCharArray()[i]=='e')
-                check=1;
-            if(check==0)
-                return false;
-
-        }
-
-        return true;
-    }
-    private boolean greaterOrder(String previousOperation, String inputItem) {
-        int firstOperator=0;
-        int secondOperator=0;
-
-        for(OperatorInfos op:operatorInfos){
-            if(op.getName().equals(previousOperation))
-                firstOperator=Integer.parseInt(op.getRate());
-            if(op.getName().equals(inputItem))
-                secondOperator=Integer.parseInt(op.getRate());
-        }
-        if(firstOperator>secondOperator)
-            return true;
-        return false;
-
-    }
-
 }

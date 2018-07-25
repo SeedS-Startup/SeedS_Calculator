@@ -21,7 +21,7 @@ public class Alpha extends InputType {
             case R.id.but45:
                 return"e";
             case R.id.but25:
-               return "X";
+               return "x";
             case R.id.but26:
                 return "Y";
             case R.id.but27:

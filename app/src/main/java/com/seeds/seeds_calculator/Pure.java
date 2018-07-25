@@ -67,6 +67,11 @@ public class Pure extends InputType {
                     leftRightKey.add("\\sinh{(");
                     return "\\sinh{()}";
                 }
+                else if(previousButton==R.id.but46){
+                    deletekey.add("^{\\circ}");
+                    leftRightKey.add("^{\\circ}");
+                    return "^{\\circ}";
+                }
                 return "1";
             case R.id.but39:
                 if(previousButton==R.id.but18) {
@@ -75,6 +80,11 @@ public class Pure extends InputType {
                     leftRightKey.add("\\cosh{(");
                     return "\\cosh{()}";
                 }
+                else if(previousButton==R.id.but46){
+                    deletekey.add("^{r}");
+                    leftRightKey.add("^{r}");
+                    return "^{r}";
+                }
                 return "2";
             case R.id.but40:
                 if(previousButton==R.id.but18) {
@@ -82,6 +92,11 @@ public class Pure extends InputType {
                     leftRightKey.add(")}");
                     leftRightKey.add("\\tanh{(");
                     return "\\tanh{()}";
+                }
+                else if(previousButton==R.id.but46){
+                    deletekey.add("^{,}");
+                    leftRightKey.add("^{,}");
+                    return "^{'}";
                 }
                 return "3";
             case R.id.but41:

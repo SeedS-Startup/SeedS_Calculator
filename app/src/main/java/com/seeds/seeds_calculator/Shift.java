@@ -113,6 +113,10 @@ public class Shift extends InputType {
                 leftRightKey.add("{e}^{(");
                 return "{e}^{()}";
             case R.id.but7:
+                deletekey.add("\\frac{d}{dx}{()}\\mid _{x=()}");
+                leftRightKey.add(")}");
+                leftRightKey.add(")}\\mid _{x=(");
+                leftRightKey.add("\\frac{d}{dx}{(");
                 return "\\frac{d}{dx}{()}\\mid _{x=()}";
             case R.id.but8:
                 deletekey.add("{()}!");

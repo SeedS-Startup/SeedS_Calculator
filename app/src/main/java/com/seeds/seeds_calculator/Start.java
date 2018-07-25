@@ -8,6 +8,9 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import org.mariuszgromada.math.mxparser.Expression;
+import org.mariuszgromada.math.mxparser.mXparser;
+
 import io.github.kexanie.library.MathView;
 
 public class Start extends AppCompatActivity implements View.OnClickListener {
@@ -39,9 +42,10 @@ public class Start extends AppCompatActivity implements View.OnClickListener {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Print print=new LineIO(inputType.getInput());
-                String output=print.output();
-                System.out.println(output);
+                MathOperations mo=new MathOperations();
+                String output=mo.handleInputString(inputType.getInput());
+                Expression e17 = new Expression(output);
+                mXparser.consolePrintln(e17.getExpressionString() + " = " + e17.calculate());
             }
         });
     }
@@ -60,9 +64,7 @@ public class Start extends AppCompatActivity implements View.OnClickListener {
         mathView.setHorizontalScrollBarEnabled(true);
         mathView.setVerticalScrollBarEnabled(true);
         String mathString=inputType.getOutput(v,previousButton,this);
-        Print print=new LineIO(inputType.getInput());
-        String output=print.output();
-        mathView.setText(output);
+        mathView.setText(mathString);
         previousButton=v.getId();
     }
 }
