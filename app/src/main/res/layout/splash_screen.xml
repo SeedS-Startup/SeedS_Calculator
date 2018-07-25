@@ -70,7 +70,7 @@
         <Space
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="27"/>
+            android:layout_weight="28"/>
 
         <ImageView
             android:layout_width="0dp"
@@ -86,8 +86,8 @@
         <TextView
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="22"
-            android:text="Produced by"
+            android:layout_weight="20"
+            android:text="Powered by"
             android:gravity="center_vertical"
             android:textSize="15sp"
             android:textColor="#858585"/>
