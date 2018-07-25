@@ -1,39 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.LinearLayoutCompat
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:layout_weight="100"
-    >
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="0dp"
-    android:layout_weight="55"
-    >
+    android:weightSum="100"
+    android:background="#ffffff">
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="30"/>
+
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="15"
         android:layout_gravity="center"
-        android:src="@drawable/seeds"
-        android:layout_weight="50"
-        android:contentDescription="@string/app_name"
-        />
-</LinearLayout>
+        android:src="@mipmap/calc"
+        android:contentDescription="@string/app_name"/>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="10"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="45">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/start_text"
-            android:textSize="15sp"
-            android:gravity="center_horizontal"
-            android:textColor="@color/black_but"
+        android:layout_weight="6"
+        android:weightSum="100">
 
-            />
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="23"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="Casio"
+            android:textStyle="bold"
+            android:textSize="30sp"
+            android:textColor="#8b41c2"
+            android:layout_weight="20"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="Calculator"
+            android:textStyle="bold"
+            android:textSize="30sp"
+            android:textColor="#239a25"
+            android:layout_weight="35"/>
+
     </LinearLayout>
 
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="30"/>
 
-</android.support.v7.widget.LinearLayoutCompat>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="4"
+        android:weightSum="100">
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="28"/>
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="8"
+            android:background="@mipmap/logo_g"/>
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="20"
+            android:text="Powered by"
+            android:gravity="center_vertical"
+            android:textSize="15sp"
+            android:textColor="#858585"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="14"
+            android:text="SeedS"
+            android:gravity="center_vertical"
+            android:textSize="15sp"
+            android:textColor="#5fa017"/>
+
+
+    </LinearLayout>
+
+</LinearLayout>
+
+

@@ -191,20 +191,19 @@
                     android:orientation="vertical"
                     android:weightSum="5">
 
-
-
-
-                      <io.github.kexanie.library.MathView
+                    <TextView
                         android:id="@+id/f_line"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
-                          android:layout_weight="2.35"
+                        android:layout_weight="2.2"
                         android:gravity="left"
                         android:maxLines="1"
+                        android:text="First Line"
                         android:textAllCaps="true"
-                        android:textColor="#FF2D3591"
+                        android:textColor="#2d3591"
                         android:textSize="25sp"
                         android:textStyle="bold" />
+
 
 
 
@@ -261,8 +260,8 @@
 
                             <Space
                                 android:layout_width="match_parent"
-                                android:layout_height="10dp"
-                                android:layout_weight="3"></Space>
+                                android:layout_height="0dp"
+                                android:layout_weight="3"/>
 
                             <TextView
                                     android:layout_weight="10"
