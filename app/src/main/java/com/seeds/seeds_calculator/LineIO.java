@@ -35,7 +35,7 @@ public class LineIO extends Print {
                 items.add('r');
                 items.add('a');
                 items.add('c');
-                add = "-)";
+                add = "-'";
                 input=deleteAdd(input,items,indexes,add);
 
             }
@@ -89,6 +89,19 @@ public class LineIO extends Print {
                     }
                 }
 
+            }
+            else if((indexes=exist("\\mid{()}\\mid",input,i))!=null){
+                String value="";
+                int open=0;
+                int close=0;
+                for(Integer index:indexes){
+                    if(input.toCharArray()[index]=='(')
+                        open=index;
+                    if(input.toCharArray()[index]==')')
+                        close=index;
+                }
+                value=input.substring(open+1,close);
+                input=input.substring(0,indexes.get(0))+"abs("+value+")"+input.substring(indexes.get(indexes.size()-1)+1);
             }
 
         }

@@ -13,7 +13,7 @@ public class MathOperations {
     public String handleInputString(String input) {
         ArrayList<Integer> indexes = new ArrayList<>();
         for(int i=0;i<input.length();i++){
-            if(i==input.length()-1){
+            if(i==input.length()-1 && input.toCharArray()[i]=='$' ){
                 input=input.substring(0,i);
             }
             else if(input.toCharArray()[i]=='$'||input.toCharArray()[i]=='\\'||input.toCharArray()[i]=='{'||
@@ -216,6 +216,62 @@ public class MathOperations {
 
 
         }
+        input=correctAngle(input,0);
+        return input;
+    }
+    public String correctAngle(String input,int kind){
+        if(kind==2){
+            return input;
+        }
+        ArrayList<Integer> indexes=new ArrayList<>();
+        for(int i=0;i<input.length();i++){
+            if((indexes=exist("sin()",input,i))!=null||(indexes=exist("cos()",input,i))!=null
+                    ||(indexes=exist("tan()",input,i))!=null||(indexes=exist("sinh()",input,i))!=null
+                    ||(indexes=exist("cosh()",input,i))!=null||(indexes=exist("tanh()",input,i))!=null){
+                for(int j=0;j<indexes.size();j++) {
+                    int k = 0;
+                    if (input.toCharArray()[indexes.get(j)] == '(') {
+                        for (k = j; k < indexes.size(); k++) {
+                            if (input.toCharArray()[indexes.get(k)] == ')') {
+                                i=k;
+                                break;
+                            }
+                        }
+                        if(kind==0) {
+                            input = input.substring(0, indexes.get(j) + 1) + "(" + input.substring(indexes.get(j) + 1, indexes.get(k)) + ")*pi/180" + input.substring(indexes.get(k));
+                        }
+                        else if(kind==1){
+                            input = input.substring(0, indexes.get(j) + 1) + "(" + input.substring(indexes.get(j) + 1, indexes.get(k)) + ")*pi/200" + input.substring(indexes.get(k));
+
+                        }
+                    }
+                }
+
+            }
+            if((indexes=exist("arcsin()",input,i))!=null||(indexes=exist("arccos()",input,i))!=null
+                    ||(indexes=exist("arctan()",input,i))!=null||(indexes=exist("arcsinh()",input,i))!=null
+                    ||(indexes=exist("arccosh()",input,i))!=null||(indexes=exist("arctanh()",input,i))!=null){
+                for(int j=0;j<indexes.size();j++) {
+                    int k = 0;
+                    if (input.toCharArray()[indexes.get(j)] == '(') {
+                        for (k = j; k < indexes.size(); k++) {
+                            if (input.toCharArray()[indexes.get(k)] == ')') {
+                                i=k;
+                                break;
+                            }
+                        }
+                        if(kind==0) {
+                            input = input.substring(0, indexes.get(k)+1) + "/pi*180" + input.substring(indexes.get(k)+1);
+                        }
+                        else if(kind==1){
+                            input = input.substring(0, indexes.get(k)+1) + "/pi*200" + input.substring(indexes.get(k)+1);
+
+                        }
+                    }
+                }
+
+            }
+        }
         return input;
     }
 
@@ -241,5 +297,110 @@ public class MathOperations {
         if(indexes.size()==s.length())
             return indexes;
         return null;
+    }
+
+    public String getAnswer(double calculated,int kind,int number){
+        int i=1;
+        int count=0;
+        String input=Double.toString(calculated);
+        for(i=0;i<input.length();i++){
+            if(input.toCharArray()[i]=='.')
+                break;
+        }
+        int dotPosition=i;
+
+        if (kind == 1) {
+            input=input.substring(0,1)+"."+input.substring(1,dotPosition)+input.substring(dotPosition+1);
+            while (input.toCharArray()[0]=='0'){
+                input=input.substring(2,3)+"."+input.substring(3)+"0";
+                count++;
+            }
+
+        }
+        String output=input.substring(0,1);
+        for( i=1;i<input.length()&&input.toCharArray()[i-1]!='.';i++) {
+            if(i==input.length()-1){
+                output+=input.substring(i);
+            }
+            else{
+                output += input.substring(i, i + 1);
+            }
+
+        }
+
+        i--;
+        if(i!=input.length()-1) {
+
+            if (input.length() - i >= number) {
+                output += input.substring(i+1, i + number + 1);
+            } else {
+                output += input.substring(i+1);
+                int repeat = number -(input.length()-dotPosition)+1;
+                while (repeat > 0) {
+                    output += "0";
+                    repeat--;
+                }
+            }
+
+            if(kind==2){
+                if (input.length() - i >= 10) {
+                    output += input.substring(i+1, i + 10 + 1);
+                }
+            }
+        }
+        if(kind==1){
+            output+="\\times10^{"+Integer.toString(dotPosition-count-1)+"}";
+        }
+        output="$$"+output+"$$";
+      return output;
+    }
+
+    public String eng(String input){
+        int check =0;
+        int i;
+        String output="";
+        int open=0;
+        int close=0;
+        ArrayList<Integer> indexes=new ArrayList<>();
+        for(i=0;i<input.length();i++){
+            if((indexes=exist("\\times10^{}",input,i))!=null){
+                check=1;
+                break;
+            }
+        }
+        if(check==0){
+            output=input.substring(0,input.length()-2)+"\\times10^{0}$$";
+        }
+        else{
+            String number=input.substring(2,i);
+            double num=Double.parseDouble(number);
+            for(Integer index:indexes){
+                if(input.toCharArray()[index]=='{')
+                    open=index;
+                if(input.toCharArray()[index]=='}')
+                    open=index;
+            }
+            String power=input.substring(open+1,close);
+            int pow=Integer.parseInt(power);
+            if(pow%3==0&&pow>=-6){
+                pow-=3;
+                num*=1000;
+                power=Integer.toString(pow);
+                number=Double.toString(num);
+                output="$$"+number+"\\times10^{"+power+"}$$";
+            }
+            else{
+                while(pow>0){
+                    num=num/10;
+                    pow--;
+                }
+                while(pow<0){
+                    num*=10;
+                    pow++;
+                }
+                output="$$"+number+"\\times10^{"+power+"}$$";
+            }
+        }
+        return output;
     }
 }

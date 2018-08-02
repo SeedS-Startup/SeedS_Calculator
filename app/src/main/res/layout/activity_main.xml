@@ -190,30 +190,28 @@
                     android:layout_weight="5.8"
                     android:orientation="vertical"
                     android:weightSum="5">
-
                     <io.github.kexanie.library.MathView
                         android:id="@+id/f_line"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="2.2"
                         android:gravity="left"
-                        android:maxLines="1"
                         android:textAllCaps="true"
                         android:textColor="#2d3591"
-                        android:textSize="25sp"
+                        android:textSize="15sp"
                         android:textStyle="bold" />
 
 
 
 
-                    <TextView
+
+                    <io.github.kexanie.library.MathView
                         android:id="@+id/s_line"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="2.468"
                         android:gravity="right"
                         android:maxLines="1"
-                        android:text="Second Line"
                         android:textAllCaps="true"
                         android:textColor="#2d3591"
                         android:textSize="25sp"
@@ -391,7 +389,7 @@
                                     android:layout_width="0dp"
                                     android:layout_height="match_parent"
                                     android:layout_weight="2.5"
-                                    android:text="S"
+                                    android:text="d/dx"
                                     android:textSize="8sp"
                                     android:textColor="@color/yellow_but"
                                     android:textStyle="bold"
@@ -415,7 +413,7 @@
                                 android:layout_height="0dp"
                                 android:layout_weight="22"
                                 android:background="@drawable/o_but1"
-                                android:text="S"
+                                android:text="∫"
                                 android:textColor="#ffffff"
                                 android:textSize="10sp"
 
@@ -623,7 +621,7 @@
                                 android:layout_height="0dp"
                                 android:layout_weight="22"
                                 android:background="@drawable/o_but1"
-                                android:text="S"
+                                android:text="^-1"
                                 android:textColor="#ffffff"
                                 android:textSize="10sp"
 
@@ -688,7 +686,7 @@
                                     android:layout_width="0dp"
                                     android:layout_height="match_parent"
                                     android:layout_weight="2"
-                                    android:text="S"
+                                    android:text="Σ"
                                     android:textSize="8sp"
                                     android:textColor="@color/yellow_but"
                                     android:textStyle="bold"
@@ -711,7 +709,7 @@
                                 android:layout_height="0dp"
                                 android:layout_weight="22"
                                 android:background="@drawable/o_but1"
-                                android:text="S"
+                                android:text="log▪▍"
                                 android:textColor="#ffffff"
                                 android:textSize="10sp"
 
@@ -775,7 +773,7 @@
                                 android:layout_height="0dp"
                                 android:layout_weight="22"
                                 android:background="@drawable/o_but1"
-                                android:text="S"
+                                android:text="□/□"
                                 android:textColor="#ffffff"
                                 android:textSize="10sp"
                                 android:textStyle="bold" />
@@ -809,7 +807,7 @@
                                     android:textColor="@color/yellow_but"
                                     android:textSize="8sp"
                                     android:gravity="center"
-                                    android:text="S"/>
+                                    android:text="∠"/>
                                 <TextView
                                     android:layout_width="0dp"
                                     android:layout_height="match_parent"
@@ -935,7 +933,7 @@
                                 android:layout_height="0dp"
                                 android:layout_weight="22"
                                 android:background="@drawable/o_but1"
-                                android:text="S"
+                                android:text="√"
                                 android:textColor="#ffffff"
                                 android:textSize="10sp"
                                 android:textStyle="bold" />
@@ -998,7 +996,7 @@
                                 android:layout_height="0dp"
                                 android:layout_weight="22"
                                 android:background="@drawable/o_but1"
-                                android:text="S"
+                                android:text="°’’’"
                                 android:textColor="#ffffff"
                                 android:textSize="10sp"
                                 android:textStyle="bold" />
@@ -1018,7 +1016,7 @@
                                     android:layout_width="0dp"
                                     android:layout_height="match_parent"
                                     android:layout_weight="2"
-                                    android:text="S"
+                                    android:text="←"
                                     android:textSize="8sp"
                                     android:textColor="@color/yellow_but"
                                     android:textStyle="bold"
@@ -1070,7 +1068,7 @@
                                     android:layout_width="0dp"
                                     android:layout_height="match_parent"
                                     android:layout_weight="5"
-                                    android:text="S"
+                                    android:text="x³"
                                     android:textSize="8sp"
                                     android:textColor="@color/yellow_but"
                                     android:textStyle="bold"
@@ -1093,7 +1091,7 @@
                                 android:layout_height="0dp"
                                 android:layout_weight="22"
                                 android:background="@drawable/o_but1"
-                                android:text="S"
+                                android:text="x²"
                                 android:textColor="#ffffff"
                                 android:textSize="10sp"
                                 android:textStyle="bold" />
@@ -1236,7 +1234,7 @@
                                 android:layout_height="0dp"
                                 android:layout_weight="22"
                                 android:background="@drawable/o_but1"
-                                android:text="S"
+                                android:text="xº"
                                 android:textColor="#ffffff"
                                 android:textSize="10sp"
                                 android:textStyle="bold" />
@@ -1320,11 +1318,11 @@
                                     android:layout_width="0dp"
                                     android:layout_height="match_parent"
                                     android:layout_weight="2"
-                                    android:text="S"
-                                    android:textSize="8sp"
+                                    android:gravity="center"
+                                    android:text="’"
                                     android:textColor="@color/yellow_but"
-                                    android:textStyle="bold"
-                                    android:gravity="center"/>
+                                    android:textSize="8sp"
+                                    android:textStyle="bold" />
                                 <TextView
                                     android:layout_width="0dp"
                                     android:layout_height="match_parent"
@@ -1372,7 +1370,7 @@
                                     android:layout_width="0dp"
                                     android:layout_height="match_parent"
                                     android:layout_weight="5"
-                                    android:text="S"
+                                    android:text="10º"
                                     android:textSize="8sp"
                                     android:textColor="@color/yellow_but"
                                     android:textStyle="bold"
@@ -1504,7 +1502,7 @@
                                 android:layout_height="0dp"
                                 android:layout_weight="22"
                                 android:background="@drawable/o_but1"
-                                android:text="S"
+                                android:text="S⇔D"
                                 android:textColor="#ffffff"
                                 android:textSize="10sp"
                                 android:textStyle="bold" />
@@ -1533,7 +1531,7 @@
                                     android:layout_width="0dp"
                                     android:layout_height="match_parent"
                                     android:layout_weight="5"
-                                    android:text="S"
+                                    android:text="eº"
                                     android:textSize="8sp"
                                     android:textColor="@color/yellow_but"
                                     android:textStyle="bold"
@@ -2225,7 +2223,7 @@
                                     android:layout_width="0dp"
                                     android:layout_height="match_parent"
                                     android:layout_weight="5"
-                                    android:text="S"
+                                    android:text="П"
                                     android:textColor="@color/yellow_but"
                                     android:textSize="8sp"
                                     android:textStyle="bold"
@@ -2250,7 +2248,7 @@
                                 android:layout_weight="17"
                                 android:background="@drawable/o_but2"
                                 android:gravity="center"
-                                android:text="S"
+                                android:text="×10º"
                                 android:textColor="@color/black_but"
                                 android:textSize="18sp"
                                 android:textStyle="bold" />
@@ -2339,7 +2337,7 @@
                                 android:layout_weight="17"
                                 android:background="@drawable/o_but2"
                                 android:gravity="center"
-                                android:text="S"
+                                android:text="×"
                                 android:textColor="@color/black_but"
                                 android:textSize="18sp"
                                 android:textStyle="bold" />
@@ -2519,7 +2517,7 @@
                                 android:layout_weight="17"
                                 android:background="@drawable/o_but2"
                                 android:gravity="center"
-                                android:text="S"
+                                android:text="÷"
                                 android:textColor="@color/black_but"
                                 android:textSize="18sp"
                                 android:textStyle="bold" />
@@ -2564,7 +2562,7 @@
                                 android:layout_weight="17"
                                 android:background="@drawable/o_but2"
                                 android:gravity="center"
-                                android:text="S"
+                                android:text="-"
                                 android:textColor="@color/black_but"
                                 android:textSize="18sp"
                                 android:textStyle="bold" />

@@ -2,9 +2,7 @@ package com.seeds.seeds_calculator;
 
 import android.app.Activity;
 import android.content.Context;
-import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,17 +10,15 @@ import java.util.Set;
 
 import io.github.kexanie.library.MathView;
 
-public class Pure extends ButtonInput {
+public class ComplexButton extends ButtonInput {
     boolean shift=false;
     boolean alpha=false;
-
-    public Pure(Activity active) {
+    public ComplexButton(Activity active) {
         super(active);
     }
 
-
     @Override
-    public String getOutput(View v, int previousButton, Activity context,String input ) {
+    public String getOutput(View v, int previousButton, Activity context, String input) {
         int cursorPosition;
         switch(v.getId()){
             case R.id.c_top:
@@ -47,8 +43,6 @@ public class Pure extends ButtonInput {
         }
         return input;
     }
-
-
     private String findString(View v, int previousButton,Activity context) {
         switch(v.getId()){
             case R.id.but43:
@@ -60,10 +54,11 @@ public class Pure extends ButtonInput {
 //                    return "Rnd{()}";
                     showSnackbar();
                 }
-                else if(alpha){
-                    return "";
+
+                if(!shift && !alpha) {
+                    return "0";
                 }
-                return "0";
+                return "";
             case R.id.but44:
                 if(shift){
                     shift=false;
@@ -73,10 +68,10 @@ public class Pure extends ButtonInput {
 //                    return "Rand{()}";
                     showSnackbar();
                 }
-                else if(alpha){
-                    return "";
+                if(!shift && !alpha) {
+                    return ".";
                 }
-                return ".";
+                return "";
             case R.id.but45:
                 if(alpha){
                     alpha=false;
@@ -108,20 +103,10 @@ public class Pure extends ButtonInput {
                 }
                 return "";
             case R.id.but41:
-                if(shift){
-                    shift=false;
-//                    deletekey.add("Pol{()}");
-//                    leftRightKey.add(")}");
-//                    leftRightKey.add("Pol{(");
-//                    return "Pol{()}";
-                    showSnackbar();
-                }
-                if(alpha){
-                    return "";
-                }
                 if(!shift && !alpha) {
                     return "+";
                 }
+                return "";
             case R.id.but17:
                 if(alpha){
                     alpha=false;
@@ -134,9 +119,7 @@ public class Pure extends ButtonInput {
 //                    return "{()}^{\\square}";
                     showSnackbar();
                 }
-                if(alpha){
-                    return "";
-                }
+                return "";
             case R.id.but16:
                 if(alpha){
                     alpha=false;
@@ -146,16 +129,7 @@ public class Pure extends ButtonInput {
                     return "-";
                 }
                 return "";
-
             case R.id.but42:
-                if(shift){
-                    shift=false;
-//                    deletekey.add("Rec{()}");
-//                    leftRightKey.add(")}");
-//                    leftRightKey.add("Rec{(");
-//                    return "Rec{()}";
-                    showSnackbar();
-                }
                 if(!shift && !alpha) {
                     return "-";
                 }
@@ -174,6 +148,7 @@ public class Pure extends ButtonInput {
                 if(!shift && !alpha) {
                     return "6";
                 }
+                return "";
             case R.id.but36:
                 if(shift){
                     shift=false;
@@ -219,11 +194,15 @@ public class Pure extends ButtonInput {
                     return "9";
                 }
                 return "";
-            case R.id.but24:
-                if (shift){
-                    shift=false;
-                    return "%";
+            case R.id.but23:
+                if(!alpha){
+                    if(shift)
+                        shift=false;
+//                    return "i";
+                    showSnackbar();
                 }
+                return "";
+            case R.id.but24:
                 if(!shift && !alpha) {
                     return "(";
                 }
@@ -400,24 +379,20 @@ public class Pure extends ButtonInput {
                 }
                 return "";
             case R.id.but7:
-                if(shift){
-                    shift=false;
-                    deletekey.add("\\frac{d}{dx}{()}\\mid _{x=()}");
-                    leftRightKey.add(")}");
-                    leftRightKey.add(")}\\mid _{x=(");
-                    leftRightKey.add("\\frac{d}{dx}{(");
-                    return "\\frac{d}{dx}{()}\\mid _{x=()}";
-                }
                 if(alpha){
-                    alpha=false;
+                    if(shift)
+                        shift=false;
                     return ":";
                 }
-                deletekey.add("\\int_{()}^{()}{()}");
-                leftRightKey.add(")}");
-                leftRightKey.add(")}{(");
-                leftRightKey.add(")}^{(");
-                leftRightKey.add("\\int_{(");
-                return "\\int_{()}^{()}{()}";
+                if(!shift && !alpha) {
+                    deletekey.add("\\int_{()}^{()}{()}");
+                    leftRightKey.add(")}");
+                    leftRightKey.add(")}{(");
+                    leftRightKey.add(")}^{(");
+                    leftRightKey.add("\\int_{(");
+                    return "\\int_{()}^{()}{()}";
+                }
+                return "";
             case R.id.but8:
                 if(shift){
                     shift=false;
@@ -434,15 +409,6 @@ public class Pure extends ButtonInput {
                 }
                 return "";
             case R.id.but9:
-                if(shift){
-                    shift=false;
-                    deletekey.add("\\sum_{()}^{()}{()}");
-                    leftRightKey.add(")}");
-                    leftRightKey.add(")}{(");
-                    leftRightKey.add(")}^{(");
-                    leftRightKey.add("\\sum_{(");
-                    return "\\sum_{()}^{()}{()}";
-                }
                 if(!shift && !alpha) {
                     deletekey.add("\\log_{()}{()}");
                     leftRightKey.add(")}");
@@ -593,7 +559,5 @@ public class Pure extends ButtonInput {
         input=input.substring(0,cursorPosition-1-leftSkipNumber)+"|"+input.substring(cursorPosition-1-leftSkipNumber,cursorPosition-1)+input.substring(cursorPosition);
         return input;
     }
-
-
 
 }
