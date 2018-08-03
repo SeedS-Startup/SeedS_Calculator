@@ -4,8 +4,10 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.view.Window;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
@@ -301,7 +303,10 @@ public abstract class ButtonInput {
          return null;
      }
     public void showSnackbar() {
-        Toast.makeText(active,"Coming soon",Toast.LENGTH_SHORT).show();
+        LinearLayout linearLayout=(LinearLayout)this.active.findViewById(R.id.layout);
+        Snackbar snackbar = Snackbar
+                .make(linearLayout, "Coming Soon !", Snackbar.LENGTH_LONG);
+        snackbar.show();
     }
 
 }

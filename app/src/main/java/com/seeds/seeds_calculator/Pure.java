@@ -461,11 +461,9 @@ public class Pure extends ButtonInput {
 
                 if(shift) {
                     shift=false;
-                    showSnackbar();
+
                 }
-                if(!shift && !alpha) {
-                    return "";
-                }
+                showSnackbar();
                 return "";
             case R.id.but26:
                 if(alpha){
@@ -487,6 +485,7 @@ public class Pure extends ButtonInput {
                 return "";
 
         }
+        showSnackbar();
         return "";
     }
 

@@ -4,12 +4,14 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
@@ -52,7 +54,7 @@ public class Start extends AppCompatActivity implements View.OnClickListener {
             ImageButton imageButton=(ImageButton)findViewById(imageButtonId[i]);
             imageButton.setOnClickListener(this);
         }
-       // mode=new Comp(this);
+        mode=new Comp(Start.this);
 
     }
 
@@ -107,6 +109,7 @@ public class Start extends AppCompatActivity implements View.OnClickListener {
                                 dialog.dismiss();
                                 break;
                             case("STAT"):
+                                showSnackbar(Start.this);
                             case("BASE-N"):
                                 mode=new BaseN(Start.this);
                                 dialog.dismiss();
@@ -136,7 +139,10 @@ public class Start extends AppCompatActivity implements View.OnClickListener {
     }
 
 
-    public void showSnackbar() {
-        Toast.makeText(this,"Coming soon",Toast.LENGTH_SHORT).show();
+    public void showSnackbar(Context context) {
+        LinearLayout linearLayout=(LinearLayout)findViewById(R.id.layout);
+        Snackbar snackbar = Snackbar
+                .make(linearLayout, "Coming Soon !", Snackbar.LENGTH_LONG);
+        snackbar.show();
     }
 }

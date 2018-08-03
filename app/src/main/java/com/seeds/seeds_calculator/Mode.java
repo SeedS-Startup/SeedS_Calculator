@@ -1,10 +1,12 @@
 package com.seeds.seeds_calculator;
 
 import android.app.Activity;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import io.github.kexanie.library.MathView;
@@ -41,7 +43,10 @@ public abstract class Mode implements View.OnClickListener  {
         }
     }
     public void showSnackbar() {
-        Toast.makeText(activity,"Coming soon",Toast.LENGTH_SHORT).show();
+        LinearLayout linearLayout=(LinearLayout)this.activity.findViewById(R.id.layout);
+        Snackbar snackbar = Snackbar
+                .make(linearLayout, "Coming Soon !", Snackbar.LENGTH_LONG);
+        snackbar.show();
     }
 
 }
