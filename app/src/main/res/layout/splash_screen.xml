@@ -27,33 +27,34 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="6"
+        android:layout_height="wrap_content"
+        android:gravity="center"
         android:weightSum="100">
 
-        <Space
-            android:layout_width="0dp"
+
+        <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="23"/>
+            android:layout_gravity="center"
+            android:orientation="horizontal">
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:text="Casio"
+            android:text="Casio "
             android:textStyle="bold"
             android:textSize="30sp"
             android:textColor="#8b41c2"
             android:layout_weight="20"/>
 
         <TextView
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="Calculator"
             android:textStyle="bold"
             android:textSize="30sp"
-            android:textColor="#239a25"
-            android:layout_weight="35"/>
-
+            android:textColor="#239a25"/>
+        </LinearLayout>
     </LinearLayout>
 
     <Space
@@ -63,14 +64,17 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:layout_weight="4"
+        android:gravity="center"
         android:weightSum="100">
 
-        <Space
-            android:layout_width="0dp"
+        <LinearLayout
+
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="28"/>
+            android:gravity="center">
 
         <ImageView
             android:layout_width="0dp"
@@ -84,23 +88,21 @@
             android:layout_weight="2"/>
 
         <TextView
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="20"
-            android:text="Powered by"
+            android:text="Powered by "
             android:gravity="center_vertical"
             android:textSize="15sp"
             android:textColor="#858585"/>
 
         <TextView
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="14"
             android:text="SeedS"
             android:gravity="center_vertical"
             android:textSize="15sp"
             android:textColor="#5fa017"/>
-
+        </LinearLayout>
 
     </LinearLayout>
 
